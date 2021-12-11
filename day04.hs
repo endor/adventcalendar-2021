@@ -34,7 +34,7 @@ findFirstToWin (x:xs) m list = findFirstToWin xs m (x:list)
 
 findLastToWin :: [Int] -> M.Map [Int] [Int] -> [Int] -> M.Map [Int] Int -> Int -> Int
 findLastToWin [] rowToBoard (x:xs) rowToMarked boards = x
-findLastToWin (x:xs) rowToBoard list rowToMarked boards | boards > 1 && matchedRows /= [] = findLastToWin xs rowToBoard (x:list) u (boards-(quot (length rows) 10))
+findLastToWin (x:xs) rowToBoard list rowToMarked boards | boards > 1 && matchedRows /= [] = findLastToWin xs rowToBoard (x:list) u (boards-quot (length rows) 10)
   where u = M.filterWithKey (\k v -> k `notElem` rows) unmatchedRows
         rows = M.keys $ M.filter (`elem` b) rowToBoard
         b = M.elems $ M.filterWithKey (\k v -> k `elem` matchedRows) rowToBoard
